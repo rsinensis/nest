@@ -5,6 +5,9 @@ import (
 	"fmt"
 	"log"
 	"os"
+
+	"github.com/rsinensis/nest/module/logger"
+	"github.com/rsinensis/nest/module/setting"
 )
 
 var (
@@ -16,7 +19,8 @@ var (
 	BuildMode string
 )
 
-func main() {
+// dispay app info
+func info() {
 	var v bool
 	flag.BoolVar(&v, "v", false, "show version and exit")
 	flag.Parse()
@@ -29,4 +33,11 @@ func main() {
 	if len(BuildMode) == 0 {
 		BuildMode = "dev"
 	}
+}
+
+func main() {
+	info()
+
+	setting.InitSetting(BuildMode)
+	logger.InitLogger(BuildMode)
 }
