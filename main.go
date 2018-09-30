@@ -8,6 +8,7 @@ import (
 
 	"github.com/rsinensis/nest/module/logger"
 	"github.com/rsinensis/nest/module/setting"
+	"github.com/rsinensis/nest/module/id"
 )
 
 var (
@@ -40,4 +41,5 @@ func main() {
 
 	setting.InitSetting(BuildMode)
 	logger.InitLogger(BuildMode)
+	id.InitId()
 }

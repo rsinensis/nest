@@ -14,15 +14,13 @@ var logger *zap.Logger
 
 // InitLogger init logger
 func InitLogger(mode string) {
-
 	cfg := setting.GetSetting()
 
-	filename := cfg.Section("log").Key("Filename").String()
+	filename := cfg.Section("log").Key("Filename").MustString("log/app.log")
 	maxSize := cfg.Section("log").Key("MaxSize").MustInt(100)
 	maxBackups := cfg.Section("log").Key("MaxBackups").MustInt(15)
 	maxAge := cfg.Section("log").Key("MaxAge").MustInt(28)
-	level := cfg.Section("log").Key("Level").String()
-
+	level := cfg.Section("log").Key("Level").MustString("info")
 	var encoder zapcore.EncoderConfig
 	var output io.Writer
 	switch mode {
